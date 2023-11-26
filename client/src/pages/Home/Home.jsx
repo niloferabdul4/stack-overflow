@@ -5,7 +5,7 @@ import RightSidebar from '../../components/RightSidebar/RightSidebar'
 
 const Home = () => {
   return (
-    <div>
+  
       <div className="home_container_1">
           <LeftSidebar/>
           <div className="home_container_2">
@@ -13,7 +13,7 @@ const Home = () => {
                <RightSidebar/>
           </div>
       </div>
-    </div>
+  
   )
 }
 

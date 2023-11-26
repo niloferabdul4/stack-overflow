@@ -26,16 +26,16 @@ var user='nila'
                 <input type='text' placeholder='Search...' className='input' />
              </form>
              {!user? 
-                  (<Link to='/auth' className='nav_item nav_link'>Login</Link>
+                  (<Link to='/Auth' className='nav_item nav_link'>Login</Link>
                   )
                 :
                   ( 
                 
                   <div className="profile">
-                     <Link to='/user' className='nav_item' >
+                     <Link to='/User' className='nav_item' >
                        <Avatar backgroundColor='#009dff' color='white' borderRadius='50%' px='7px' py='10px' >M</Avatar>
                      </Link>
-                     <Link to='/auth' className='nav_item nav_link'>Login</Link>
+                     <Link to='/Auth' className='nav_item nav_link'>Login</Link>
                      </div>
                   
                   )
