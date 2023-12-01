@@ -1,12 +1,11 @@
 import React from 'react'
 import Question from './Question'
 
-const QuestionList = ({questionList}) => {
+const QuestionList = ({questionsList}) => {
 
-    console.log(questionList)
   return (
     <div className='question-list-container'>
-      {questionList.map((question) => (
+      {questionsList?.data?.map((question) => (
         <Question question={question} key={question._id} />
       ))}
     </div>

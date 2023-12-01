@@ -1,46 +1,78 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { nav_links } from '../../constants/data'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import SearchIcon from '@mui/icons-material/Search';
 import './Navbar.css'
 import Avatar from '../Avatar/Avatar';
-
+import { setCurrentUser } from '../../actions/currentUser.js'
 
 const Navbar = () => {
-var user='nila'
+
+  const User = useSelector((state) => (state.currentUserReducer))
+  console.log(User)
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
+  }, [dispatch])
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/Auth");
+    dispatch(setCurrentUser(null));
+  };
+
   return (
     <nav>
       <div className="navbar">
-          <Link to='/' className='nav_item nav_logo'>
-              <img src={logo} className='logo' alt='logo'/>
-           </Link>           
-            {nav_links.map(item=>{return <>
-                <Link key={item.id} to={item.path} className='nav_item nav_btn'>
-                           {item.title}
+        <Link to='/' className='nav_item nav_logo'>
+          <img src={logo} className='logo' alt='logo' />
+        </Link>
+        {nav_links.map(item => {
+          return <>
+            <Link key={item.id} to={item.path} className='nav_item nav_btn'>
+              {item.title}
+            </Link>
+          </>
+        })}
+
+        <form className='search'>
+          <SearchIcon color='grey' fontSize='small' />
+          <input type='text' placeholder='Search...' className='input' />
+        </form>
+        {User===null ?
+          (<Link to='/Auth' className='nav_item nav_link'>Login</Link>
+          )
+          :
+          (
+
+            <div className="profile">
+               <Avatar
+                backgroundColor="#009dff"
+                px="8px"
+                py="10px"
+                borderRadius="50%"
+                color="white"
+              >
+                <Link
+                  to={`/Users/${User?.result?._id}`}
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  {User.result.name.charAt(0).toUpperCase()}
                 </Link>
-            </>})}
-            
-             <form className='search'>
-                <SearchIcon color='grey'  fontSize='small'/>
-                <input type='text' placeholder='Search...' className='input' />
-             </form>
-             {!user? 
-                  (<Link to='/Auth' className='nav_item nav_link'>Login</Link>
-                  )
-                :
-                  ( 
-                
-                  <div className="profile">
-                     <Link to='/User' className='nav_item' >
-                       <Avatar backgroundColor='#009dff' color='white' borderRadius='50%' px='7px' py='10px' >M</Avatar>
-                     </Link>
-                     <Link to='/Auth' className='nav_item nav_link'>Login</Link>
-                     </div>
-                  
-                  )
-              }
-           
+              </Avatar>
+              <button className="nav_item nav_link" onClick={handleLogout}>
+                Log out
+              </button>
+            </div>
+
+          )
+        }
+
       </div>
     </nav>
   )

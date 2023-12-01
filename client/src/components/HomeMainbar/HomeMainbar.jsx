@@ -2,100 +2,104 @@ import React from 'react'
 import './HomeMainbar.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import QuestionList from './QuestionList'
+import {useSelector} from 'react-redux'
 
 const HomeMainbar = () => {
+
   const location = useLocation()
   const navigate = useNavigate()
- const user=8;
-  const questionList = [
-    {
-      _id: 1,
-      upVotes: 3,
-      downVotes:2,
-      noOfAnswers: 1,
-      questionTitle: 'What is a function',
-      questionBody: 'It meant to be',
-      questionTags: ['javascript', 'function', 'variable'],
-      userPosted: 'ravi',
-      userId:1,
-      askedOn: 'Jun1',
-      answer:[{answerBody:'Answer',
-                userAnswered:'Manoj',
-                answeredOn:'Jun 4',
-                userId:2
-}]
-    },
-    {
-       _id: 2,
-      upVotes: 4,
-      downVotes:1,
-      noOfAnswers: 1,
-      questionTitle: 'What is a prop',
-      questionBody: 'It meant to be',
-      questionTags: ['javascript', 'function', 'variable'],
-      userPosted: 'ravi',
-      userId:1,
-      askedOn: 'Jun1',
-      answer:[{answerBody:'Answer',
-                userAnswered:'Manoj',
-                answeredOn:'Jun 4',
-                userId:3
-}]
+  const questionsList=useSelector((state)=>state.questionsReducer)
+  const user=useSelector((state)=>(state.currentUserReducer))
 
-    },
-    {
-      _id: 3,
-      upVotes: 6,
-      downVotes:2,
-      noOfAnswers: 1,
-      questionTitle: 'What is a state',
-      questionBody: 'It meant to be',
-      questionTags: ['javascript', 'variable', 'react'],
-      userPosted: 'ravi',
-      userId:1,
-      askedOn: 'Jun1',
-      answer:[{answerBody:'Answer',
-                userAnswered:'Manoj',
-                answeredOn:'Jun 4',
-                userId:2
-}]
-    },
-    {
-      _id: 4,
-      upVotes: 5,
-      downVotes:4,
-      noOfAnswers: 1,
-      questionTitle: 'What is a DOM',
-      questionBody: 'It meant to be',
-      questionTags: ['javascript', 'html', 'reactjs'],
-      userPosted: 'ravi',
-      userId:1,
-      askedOn: 'Jun1',
-      answer:[{answerBody:'Answer',
-                userAnswered:'Manoj',
-                answeredOn:'Jun 4',
-                userId:2
-}]
-    },
-    {
-      _id: 5,
-      upVotes: 7,
-      downVotes:4,
-      noOfAnswers: 1,
-      questionTitle: 'What is a function',
-      questionBody: 'It meant to be',
-      questionTags: ['javascript', 'function', 'variable','react full course','react beginner project','javascript function awards',
-      'javascript','html course'
-    ],
-      userPosted: 'ravi',
-      userId:1,
-      askedOn: 'Jun1',
-      answer:[{answerBody:'Answer',
-                userAnswered:'Manoj',
-                answeredOn:'Jun 4',
-                userId:2
-}]
-    }]
+//   const questionList = [
+//     {
+//       _id: 1,
+//       upVotes: 3,
+//       downVotes:2,
+//       noOfAnswers: 1,
+//       questionTitle: 'What is a function',
+//       questionBody: 'It meant to be',
+//       questionTags: ['javascript', 'function', 'variable'],
+//       userPosted: 'ravi',
+//       userId:1,
+//       askedOn: 'Jun1',
+//       answer:[{answerBody:'Answer',
+//                 userAnswered:'Manoj',
+//                 answeredOn:'Jun 4',
+//                 userId:2
+// }]
+//     },
+//     {
+//        _id: 2,
+//       upVotes: 4,
+//       downVotes:1,
+//       noOfAnswers: 1,
+//       questionTitle: 'What is a prop',
+//       questionBody: 'It meant to be',
+//       questionTags: ['javascript', 'function', 'variable'],
+//       userPosted: 'ravi',
+//       userId:1,
+//       askedOn: 'Jun1',
+//       answer:[{answerBody:'Answer',
+//                 userAnswered:'Manoj',
+//                 answeredOn:'Jun 4',
+//                 userId:3
+// }]
+
+//     },
+//     {
+//       _id: 3,
+//       upVotes: 6,
+//       downVotes:2,
+//       noOfAnswers: 1,
+//       questionTitle: 'What is a state',
+//       questionBody: 'It meant to be',
+//       questionTags: ['javascript', 'variable', 'react'],
+//       userPosted: 'ravi',
+//       userId:1,
+//       askedOn: 'Jun1',
+//       answer:[{answerBody:'Answer',
+//                 userAnswered:'Manoj',
+//                 answeredOn:'Jun 4',
+//                 userId:2
+// }]
+//     },
+//     {
+//       _id: 4,
+//       upVotes: 5,
+//       downVotes:4,
+//       noOfAnswers: 1,
+//       questionTitle: 'What is a DOM',
+//       questionBody: 'It meant to be',
+//       questionTags: ['javascript', 'html', 'reactjs'],
+//       userPosted: 'ravi',
+//       userId:1,
+//       askedOn: 'Jun1',
+//       answer:[{answerBody:'Answer',
+//                 userAnswered:'Manoj',
+//                 answeredOn:'Jun 4',
+//                 userId:2
+// }]
+//     },
+//     {
+//       _id: 5,
+//       upVotes: 7,
+//       downVotes:4,
+//       noOfAnswers: 1,
+//       questionTitle: 'What is a function',
+//       questionBody: 'It meant to be',
+//       questionTags: ['javascript', 'function', 'variable','react full course','react beginner project','javascript function awards',
+//       'javascript','html course'
+//     ],
+//       userPosted: 'ravi',
+//       userId:1,
+//       askedOn: 'Jun1',
+//       answer:[{answerBody:'Answer',
+//                 userAnswered:'Manoj',
+//                 answeredOn:'Jun 4',
+//                 userId:2
+// }]
+//     }]
 
 
 const handleAskQuestion=()=>{
@@ -122,13 +126,13 @@ const handleAskQuestion=()=>{
       </div>
 
       <div className='main-bar-main'>
-        {questionList === null ?
+        {questionsList === null ?
           (<h1>Loading...</h1>)
           :
           (
             <>
-            <p>{questionList.length} questions</p>
-            <QuestionList questionList={questionList}/>
+            <p>{questionsList?.length} questions</p>
+            <QuestionList questionsList={questionsList}/>
             </>
           )
         }

@@ -83,6 +83,7 @@
 .user-link {
     display: flex;
     align-items: center;
+    text-decoration: none;
   }
   .user-link p {
     padding-left: 10px;

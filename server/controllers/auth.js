@@ -1,5 +1,6 @@
-import jwt from 'jsonwebtoken'
-import bcrypt from 'bcryptjs'
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+
 import users from "../models/auth.js";
 
 //register fn
@@ -7,14 +8,15 @@ import users from "../models/auth.js";
 export const signup = async (req, res) => {
     try {
         const { name, email, password } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10)              // hash the password
-
+        
         // check if the email already exist
 
         const existinguser = await users.findOne({ email });
-        if (existinguser) {
+        if (existinguser) 
+        {
             return res.status(404).json({ message: "User already Exist." });
         }
+        const hashedPassword = await bcrypt.hash(password, 10)              // hash the password
 
         // create a new user
         const newUser = await users.create({
@@ -27,7 +29,7 @@ export const signup = async (req, res) => {
         // create a token                             
         const token = jwt.sign(
             { email: newUser.email, id: newUser._id },
-            process.env.JWT_SECRET,
+           'secret_key',
             { expiresIn: "1h" }
         );
         res.status(200).json({ result: newUser, token });
@@ -42,7 +44,7 @@ export const signup = async (req, res) => {
 //login fn
 
 export const login = async (req, res) => {
-
+    const {email, password } = req.body;
     try {
         const existinguser = await users.findOne({ email });
         if (!existinguser) {
@@ -54,7 +56,7 @@ export const login = async (req, res) => {
         }
         const token = jwt.sign(
             { email: existinguser.email, id: existinguser._id },
-            process.env.JWT_SECRET,
+            'secret_key',
             { expiresIn: "1h" }
         );
         res.status(200).json({ result: existinguser, token });

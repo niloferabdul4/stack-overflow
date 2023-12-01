@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Question = ({ question }) => {
+  console.log(question)
   return (
 
     <div className="display-question-container">
@@ -25,7 +26,8 @@ const Question = ({ question }) => {
             <p key={tag}>{tag}</p>
           ))}
         </div>
-        <p className='display-time'> asked on{question.askedOn}{question.userPosted}</p>
+        <p className='display-time'>{` asked on ${question.askedOn}    ${question.userPosted}`} </p>
+
       </div>
 </div>
     </div>
