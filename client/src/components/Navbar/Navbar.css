@@ -75,6 +75,7 @@ nav{
 }
 .profile{
     display: flex;
+  gap:6px;
 }
 .avatar{
     border-radius: 50%;

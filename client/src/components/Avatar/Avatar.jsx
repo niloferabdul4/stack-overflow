@@ -9,7 +9,7 @@ const Avatar = ({children,backgroundColor,color,borderRadius,px,py,fontSize,curs
         fontSize,
         textAlign:'center',
         cursor:cursor || 'pointer',
-        
+        textDecoration: "none",
     }
   return (
     <div style={style}>

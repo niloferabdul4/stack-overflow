@@ -1,24 +1,51 @@
 import React from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link, useNavigate, useLocation } from 'react-router-dom'
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment'
+import copy from 'copy-to-clipboard'
 import upvote from "../../assets/sort-up.svg";
 import downvote from "../../assets/sort-down.svg";
 import './Questions.css'
 import Avatar from '../../components/Avatar/Avatar';
 import DisplayAnswers from './DisplayAnswers';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { postAnswer } from '../../actions/questions';
+
+import { postAnswer ,deleteQuestion,voteQuestion} from '../../actions/questions';
+
 
 const QuestionDetails = () => {
+
     const User=useSelector((state)=>state.currentUserReducer)
-    console.log(User)
     const { id } = useParams()
     const questionsList = useSelector((state) => state.questionsReducer)
     const dispatch=useDispatch()
-    const navigate=useNavigate
+    const navigate=useNavigate()
+    const location=useLocation()
+    const url="http://localhost:3000"
+
     const [answer,setAnswer]=useState('')
     
-    const handlePostAns=(event)=>{
+     /********** Share Function **********/
+
+     const handleShare=()=>
+     {
+       copy(url+location.pathname)
+    
+     }
+
+
+     /********   Delete Function  ************/
+
+     const handleDelete=()=>{
+
+     dispatch(deleteQuestion(id,navigate))
+   
+
+     }
+
+    /***** Post Answer Function   ********/
+
+    const handlePostAns=(event,answerLength)=>{
         event.preventDefault()
         if(User===null)
         {
@@ -31,11 +58,21 @@ const QuestionDetails = () => {
                 alert("Enter an answer before submitting");
             }
             else{
-                dispatch(postAnswer({id,answerBody:answer, noOfAnswers:10,userAnswered: User.result.name}))
+                dispatch(postAnswer({id,answerBody:answer, noOfAnswers:answerLength+1,userAnswered: User?.result.name,userId:User?.result._id}))
                 setAnswer('')
             }
         }
        
+    }
+
+    const handleUpVote=()=>{
+      dispatch(voteQuestion(id,'upVote',User?.result?._id))
+
+    }
+
+    const handleDownVote=()=>{
+      dispatch(voteQuestion(id,'downVote',User?.result?._id))
+
     }
 
     // const questionList = [
@@ -131,138 +168,139 @@ const QuestionDetails = () => {
     //         }]
     //     }]
 
+    
 
     return (
 
-        <div className='question-details-page'>
-            {questionsList.data === '' ?
-                (<h1>Loading...</h1>)
-                :
-                (<>
-                    {questionsList?.data?.filter((question) => question._id === id)
-                        .map((ques) => (
-                            <div key={ques._id}>
-
-                                {/******* Section 1 ************/}
-
-                                <section key={ques._id} className="question-details-container1">
-                                    <h1>{ques.questionTitle}</h1>
-                                    <div className="question-details-container2">
-                                        <div className="question-votes">
-                                            <img
-                                                src={upvote}
-                                                alt=""
-                                                width="18"
-                                                className="votes-icon"
-
-                                            />
-                                            <p>{ques.upVotes - ques.downVotes}</p>
-                                            <img
-                                                src={downvote}
-                                                alt=""
-                                                width="18"
-                                                className="votes-icon"
-                                            />
-                                        </div>
-                                        <div style={{ width: '100%', marginLeft: '20px' }}>
-                                            <p className='question-body'>{ques.questionBody}</p>
-                                            <div className="question-details-tags">
-                                                {ques.questionTags.map(tag => (
-                                                    <p>{tag}</p>
-                                                ))}
-                                            </div>
-                                            <div className="question-actions-user">
-                                                <div className="question-details-btns">
-                                                    <button type="button">Share</button>
-                                                    <button type="button">Delete</button>
-                                                </div>
-                                                <div className='question-time-user'>
-                                                    <p>asked{ques.askedOn}</p>
-                                                    <Link to={`/Users/${ques.userId}`}
-                                                        className="user-link"
-                                                        style={{ color: "#0086d8" }}>
-                                                        <Avatar backgroundColor="orange"
-                                                            px="5px"
-                                                            py="8px"
-                                                            borderRadius="4px">
-                                                            {ques.userPosted.charAt(0).toUpperCase()}
-                                                        </Avatar>
-                                                        <p>{ques.userPosted}</p>
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-
-                                {/******* Section 2 ************/}
-
-                                {ques.noOfAnswers !== 0 && (
-                                    <section>
-                                        <h3>{ques.noOfAnswers} Answers</h3>
-                                        <DisplayAnswers
-                                            key={ques._id}
-                                            question={ques}
-
-                                        />
-                                    </section>
-
-                                )}
-
-
-                                {/******* Section 3 ************/}
-
-                                <section className="post-ans-container">
-                                    <h3>Your Answer</h3>
-                                    <form onSubmit={(e)=>handlePostAns(e,ques.answer.length)}
-                                    >
-                                        <textarea
-                                            name=""
-                                            id=""
-                                            cols="30"
-                                            rows="10"
-                                            onChange={(e)=>setAnswer(e.target.value)}
-
-                                        ></textarea>
-                                        <br />
-                                        <input
-                                            type="submit"
-                                            className="post-ans-btn"
-                                            value="Post Your Answer"
-                                            
-                                        />
-                                    </form>
-                                    <p>
-                                        Browse other Question tagged
-                                        {ques.questionTags.map((tag) => (
-                                            <Link to="/Tags" key={tag} className="ans-tags">
-                                                {" "}
-                                                {tag}{" "}
-                                            </Link>
-                                        ))}{" "}
-                                        or
-                                        <Link
-                                            to="/AskQuestion"
-                                            style={{ textDecoration: "none", color: "#009dff" }}
-                                        >
-                                            {" "}
-                                            ask your own question.
-                                        </Link>
-                                    </p>
-                                </section>
-
-                            </div>
-
-
-                        ))
-                    }
-                </>)
-
-
-
-            }
-
-        </div>
+        <div className="question-details-page">
+      {questionsList.data === null ? (
+        <h1>Loading...</h1>
+      ) : (
+        <>
+          {questionsList.data
+            .filter((question) => question._id === id)
+            .map((question) => (
+              
+              <div key={question._id}>
+                <section className="question-details-container1">
+                  <h1 style={{margin:'10px 0px'}}>{question.questionTitle}</h1>
+                  <div className="question-details-container2">
+                    <div className="question-votes">
+                      <img
+                        src={upvote}
+                        alt=""
+                        width="18"
+                        className="votes-icon"
+                        onClick={handleUpVote}
+                       
+                      />
+                      <p>{question.upVote.length - question.downVote.length}</p>
+                      <img
+                        src={downvote}
+                        alt=""
+                        width="18"
+                        className="votes-icon"
+                        onClick={handleDownVote}
+                      />
+                    </div>
+                    <div style={{width: "100%" }}>
+                      <p className="question-body">{question.questionBody}</p>
+                      <div className="question-details-tags">
+                        {question.questionTags.map((tag) => (
+                          <p key={tag}>{tag}</p>
+                        ))}
+                      </div>
+                      <div className="question-actions-user">
+                        <div className='question-details-btns'>
+                          <button type="button" onClick={handleShare}>
+                            Share
+                          </button>
+                       {User?.result?._id===question.userId &&
+                         (
+                           <button onClick={handleDelete} >
+                              Delete
+                            </button>
+                         )
+                         }
+                                                 </div>
+                        <div className='question-time-user'>
+                          <p>asked {moment(question.askedOn).fromNow()}</p>
+                          <Link
+                            to={`/Users/${question.userId}`}
+                            className="user-link"
+                            style={{ color: "#0086d8" }}
+                          >
+                            <Avatar
+                              backgroundColor="orange"
+                              px="0.4em"
+                              py="0.5em"
+                              borderRadius="4px"
+                              
+                            >
+                              {question.userPosted.charAt(0).toUpperCase()}
+                            </Avatar>
+                            <div style={{marginLeft:'5px'}}>{question.userPosted}</div>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                {question.noOfAnswers !== 0 && (
+                  <section>
+                    <h3>{question.noOfAnswers} Answers</h3>
+                    <DisplayAnswers
+                      key={question._id}
+                      question={question}
+                      handleShare={handleShare}
+                    />
+                  </section>
+                )}
+                <section className="post-ans-container">
+                  <h3>Your Answer</h3>
+                  <form
+                    onSubmit={(e) => {
+                      handlePostAns(e, question.answer.length);
+                    }}
+                  >
+                    <textarea
+                      name=""
+                      id=""
+                      cols="30"
+                      rows="10"
+                      value={answer}
+                      onChange={(e) => setAnswer(e.target.value)}
+                    ></textarea>
+                    <br />
+                    <input
+                      type="submit"
+                      className="post-ans-btn"
+                      value="Post Your Answer"
+                    />
+                  </form>
+                  <p>
+                    Browse other Question tagged
+                    {question.questionTags.map((tag) => (
+                      <Link to="/Tags" key={tag} className="ans-tags">
+                        {" "}
+                        {tag}{" "}
+                      </Link>
+                    ))}{" "}
+                    or
+                    <Link
+                      to="/AskQuestion"
+                      style={{ textDecoration: "none", color: "#009dff" }}
+                    >
+                      {" "}
+                      ask your own question.
+                    </Link>
+                  </p>
+                </section>
+              </div>
+            ))}
+        </>
+      )}
+    </div>
     )
 }
 

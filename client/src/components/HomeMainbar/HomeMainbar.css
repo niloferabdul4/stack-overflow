@@ -3,7 +3,7 @@
   float: left;
   margin: 25px 0px;
   padding: 40px 0px;
-  
+ 
 }
 
 .main-bar-header{
@@ -41,9 +41,10 @@
 .display-question-container{
     display: flex;
     align-items: center;
-    min-height: 80px;   
+    min-height: 80px;  
     border-bottom: 1px solid #edeff0; 
-    
+    width:100%;
+
 
 }
 .display-question-details{

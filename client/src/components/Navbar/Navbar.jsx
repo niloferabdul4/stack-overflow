@@ -1,28 +1,35 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { nav_links } from '../../constants/data'
 import { Link, useNavigate } from 'react-router-dom'
-import logo from '../../assets/logo.png'
 import SearchIcon from '@mui/icons-material/Search';
+import {jwtDecode} from 'jwt-decode'
 import './Navbar.css'
 import Avatar from '../Avatar/Avatar';
 import { setCurrentUser } from '../../actions/currentUser.js'
+import { nav_links } from '../../constants/data'
+import logo from '../../assets/logo.png'
+
 
 const Navbar = () => {
 
   const User = useSelector((state) => (state.currentUserReducer))
-  console.log(User)
-
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
+    const token=User?.token;
+    const decodedToken=jwtDecode(token)
+    if(decodedToken.exp*1000<new Date().getTime())            // if the expiry time is less than current time
+    { 
+      handleLogout()
+    }
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
+
   }, [dispatch])
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
-    navigate("/Auth");
+    navigate("/");
     dispatch(setCurrentUser(null));
   };
 
@@ -53,8 +60,8 @@ const Navbar = () => {
             <div className="profile">
                <Avatar
                 backgroundColor="#009dff"
-                px="8px"
-                py="10px"
+                px="0.4em"
+                py="0.5em"
                 borderRadius="50%"
                 color="white"
               >

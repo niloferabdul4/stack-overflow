@@ -14,7 +14,8 @@
  
 }
 .home_container_2{ 
-
+  display: flex;
+  justify-content: space-between;
   max-width: 1100px;
   width: calc(100% - 164px);
   padding: 24px;
@@ -22,3 +23,10 @@
 }
 
 
+
+@media screen and (max-width: 760px) {
+  .home-container-2 {
+    max-width: 100%;
+    width: 100%;
+  }
+}
