@@ -2,10 +2,13 @@ import React from 'react'
 import { Routes,Route } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Auth from './pages/Auth/Auth'
-import User from './pages/User/User'
+import User from './pages/Users/Users'
 import Questions from './pages/Questions/Questions'
 import DisplayQuestion from './pages/Questions/DisplayQuestion'
 import AskQuestion from './pages/AskQuestion/AskQuestion'
+import Tags from './pages/Tags/Tags'
+import Users from './pages/Users/Users'
+import UserProfille from './pages/UserProfile/UserProfile'
 const AllRoutes = () => {
   return (
    <Routes>
@@ -14,7 +17,9 @@ const AllRoutes = () => {
          <Route path='/Questions/:id' element={<DisplayQuestion/>} />
          <Route path='/AskQuestion' element={<AskQuestion/>} />
          <Route path='/Auth' element={<Auth/>}  /> 
-         <Route path='/User' element={<User/>}  /> 
+         <Route path='/Tags' element={<Tags/>}  /> 
+         <Route path='/Users' element={<Users/>}  /> 
+         <Route path='/Users/:id' element={<UserProfille/>} />
    </Routes>
   )
 }

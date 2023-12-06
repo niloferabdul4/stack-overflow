@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 const Question = ({ question }) => {
-  console.log(question)
+
   return (
 
     <div className="display-question-container">

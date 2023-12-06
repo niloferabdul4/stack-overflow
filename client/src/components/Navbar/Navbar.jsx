@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
-import {jwtDecode} from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode'
 import './Navbar.css'
 import Avatar from '../Avatar/Avatar';
 import { setCurrentUser } from '../../actions/currentUser.js'
@@ -17,17 +17,25 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const token=User?.token;
-    const decodedToken=jwtDecode(token)
-    if(decodedToken.exp*1000<new Date().getTime())            // if the expiry time is less than current time
-    { 
-      handleLogout()
+
+    const token = User?.token;   // if the token is present  
+   // console.log(token)
+    if (token) {
+      const decodedToken = jwtDecode(token)
+      if (decodedToken.exp * 1000 < new Date().getTime())            // if the expiry time is less than current time
+      {
+        handleLogout()
+      }
+
     }
+
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
 
-  }, [dispatch])
+
+  }, [User?.token, dispatch])
 
   const handleLogout = () => {
+
     dispatch({ type: "LOGOUT" });
     navigate("/");
     dispatch(setCurrentUser(null));
@@ -51,14 +59,14 @@ const Navbar = () => {
           <SearchIcon color='grey' fontSize='small' />
           <input type='text' placeholder='Search...' className='input' />
         </form>
-        {User===null ?
+        {User === null ?
           (<Link to='/Auth' className='nav_item nav_link'>Login</Link>
           )
           :
           (
 
             <div className="profile">
-               <Avatar
+              <Avatar
                 backgroundColor="#009dff"
                 px="0.4em"
                 py="0.5em"

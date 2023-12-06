@@ -126,12 +126,12 @@ const handleAskQuestion=()=>{
       </div>
 
       <div className='main-bar-main'>
-        {questionsList === null ?
+        {questionsList.data === null ?
           (<h1>Loading...</h1>)
           :
           (
             <>
-            <p>{questionsList?.length} questions</p>
+            <p>{questionsList?.data.length} questions</p>
             <QuestionList questionsList={questionsList}/>
             </>
           )
