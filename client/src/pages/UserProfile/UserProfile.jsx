@@ -17,6 +17,7 @@ const UserProfile = () => {
   const { id } = useParams()
   const users = useSelector((state) => state.usersReducer)
   const selectedProfile = users?.filter(user => user._id === id)[0]
+  //console.log(selectedProfile)
   const currentUser=useSelector((state)=>state.currentUserReducer);
   const [toggle,setToggle]=useState(false)
  
@@ -31,8 +32,8 @@ const UserProfile = () => {
                 backgroundColor="purple"
                 color="white"
                 fontSize="50px"
-                px="0.5em"
-                py="0.6em">
+                px="0.6em"
+                py="0.7em">
                 {selectedProfile?.name.charAt(0).toUpperCase()}
               </Avatar>
               <div className="user-name">

@@ -1,12 +1,13 @@
 import express  from 'express'
 import cors from 'cors'
+import dotenv from 'dotenv'
 import connectDB from './connectMongoDB.js'
 import UserRoutes from './routes/users.js'
 import QuestionRoutes from './routes/questions.js'
 import AnswerRoutes from './routes/answers.js'
 
 const app=express()                 // create a express server
-
+dotenv.config()
 app.use(express.json({limit:'30mb',extended:true}))           //send response as json with a limit and can be extended if needed
 app.use(express.urlencoded({limit:'30mb',extended:true}))
 app.use(cors())

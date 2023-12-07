@@ -41,7 +41,7 @@ const DisplayAnswers = ({ question,handleShare }) => {
                                 <Link to={`/Users/${ans.userId}`}
                                     className="user-link"
                                     style={{ color: "#0086d8" }}>
-                                    <Avatar backgroundColor="purple"
+                                    <Avatar backgroundColor="green"
                                         px="0.4em"
                                         py="0.5em"
                                         color='white'

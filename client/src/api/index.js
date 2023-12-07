@@ -16,7 +16,7 @@ API.interceptors.request.use((req) => {
 export const logIn=(authData)=>API.post('/user/login',authData)           
 export const signUp=(authData)=>API.post('/user/signup',authData)
 export const getAllUsers=()=>API.get('/user/getAllUsers')
-
+export const updateProfile=(id,updatedData)=>API.patch(`/user/update/${id}`,updatedData)
 
 /********     Questions   *************/
 

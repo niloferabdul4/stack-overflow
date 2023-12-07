@@ -10,13 +10,18 @@
   .user-details {
     display: flex;
     align-items: flex-start;
+   
+   
   }
   
   .user-name {
     padding-left: 20px;
+    margin: 12px 0px;
+    
   }
   .user-name p {
     color: #7e7e7e;
+    margin: 8px 0px;
   }
   .edit-profile-btn {
     padding: 8px 10px;
