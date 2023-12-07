@@ -11,6 +11,7 @@ const Avatar = ({children,backgroundColor,color,borderRadius,px,py,fontSize,curs
         cursor:cursor || 'pointer',
         textDecoration: "none",
     }
+    
   return (
     <div style={style}>
       {children}
