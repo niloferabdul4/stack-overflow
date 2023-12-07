@@ -57,19 +57,22 @@ export const deleteQuestion = async (req, res) => {
 
 export const voteQuestion = async (req, res) => {
     const { id: _id } = req.params
-    const { value, userId } = req.body;
-
+    const { value} = req.body;
+    const userId = req.userId;
     if (!mongoose.Types.ObjectId.isValid(_id)) {
         res.status(404).send('Question Unavailable')
     }
     try {
-        const question = await Questions.findById(_id)                // find the particular question and store in question
+        const question = await Questions.findById(_id)                // get the particular question and assign to'qusetion' variable
 
-        //map throught the 'upVote' array in the 'question' object and 
-        //find the item whose id is equal to current userId and then store in upIndex
-        //ie) if the current user id is there in the upVote array,assign that value to upIndex
-        const upIndex=question.upVote.finfIndex(id=>id===String(userId))
-        const downIndex=question.downVote.findIndex(id=>id===String(userId))
+        // map throught the 'upVote' array in the 'question' object and 
+        // find the item whose id is equal to current userId and then store in upIndex
+        // ie) if the current user id is there in the upVote array,assign that value to upIndex
+
+        
+        const upIndex = question.upVote.findIndex((id) => id === String(userId));
+        const downIndex = question.downVote.findIndex(
+          (id) => id === String(userId))
 
 
         /***
@@ -113,7 +116,7 @@ export const voteQuestion = async (req, res) => {
         res.status(200).json({message:'Voted Successfully'})
     }
     catch (error) {
-        res.status(500).json({ message: error.message })
+        res.status(404).json({ message: "id not found" });
       
     }
 }

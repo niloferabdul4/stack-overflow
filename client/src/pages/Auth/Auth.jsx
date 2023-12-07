@@ -5,7 +5,7 @@ import icon from '../../assets/icon.png'
 import AboutAuth from './AboutAuth'
 import './Auth.css'
 import { signup,login } from '../../actions/auth'
-import { fetchAllUsers } from '../../actions/users'
+
 
 const Auth = () => {
     const dispatch = useDispatch()

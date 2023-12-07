@@ -16,6 +16,7 @@ import { postAnswer ,deleteQuestion,voteQuestion} from '../../actions/questions'
 const QuestionDetails = () => {
 
     const User=useSelector((state)=>state.currentUserReducer)
+    //console.log(User)
     const { id } = useParams()
     const questionsList = useSelector((state) => state.questionsReducer)
     const dispatch=useDispatch()
@@ -66,12 +67,23 @@ const QuestionDetails = () => {
     }
 
     const handleUpVote=()=>{
-      dispatch(voteQuestion(id,'upVote',User?.result?._id))
-
+      if (User === null) {
+        alert("Login or Signup to up vote a question");
+        navigate("/Auth");
+      } else {
+        dispatch(voteQuestion(id, "upVote"));
+      }
+    
     }
 
     const handleDownVote=()=>{
-      dispatch(voteQuestion(id,'downVote',User?.result?._id))
+
+      if (User === null) {
+        alert("Login or Signup to down vote a question");
+        navigate("/Auth");
+      } else {
+        dispatch(voteQuestion(id, "downVote"));
+      }
 
     }
 

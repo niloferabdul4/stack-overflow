@@ -23,7 +23,7 @@ export const updateProfile=(id,updatedData)=>API.patch(`/user/update/${id}`,upda
 export const postQuestion = (questionData) => API.post("/questions/Ask", questionData);
 export const getAllQuestions = () => API.get("/questions/get");
 export const deleteQuestion=(id)=>API.delete(`/questions/delete/${id}`)
-export const voteQuestion=(id,value,userId)=>API.patch(`/questions/vote/${id}`,{value,userId})
+export const voteQuestion=(id,value)=>API.patch(`/questions/vote/${id}`,{value})
 
 
 /******  Answer Sections *******/
