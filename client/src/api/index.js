@@ -1,5 +1,4 @@
 import axios from 'axios'
-
 const API=axios.create({baseURL:'https://stackoverflow-clone-c0yx.onrender.com'})                // create a base url and store in API
                                                                         // post (url,data) to the API
 
