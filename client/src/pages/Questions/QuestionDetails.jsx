@@ -22,7 +22,7 @@ const QuestionDetails = () => {
     const dispatch=useDispatch()
     const navigate=useNavigate()
     const location=useLocation()
-    const url="http://localhost:3000"
+    const url="https://stackoverflow-clone-c0yx.onrender.com"
 
     const [answer,setAnswer]=useState('')
     
