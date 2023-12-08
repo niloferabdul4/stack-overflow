@@ -5,7 +5,7 @@ const API=axios.create({baseURL:'https://stackoverflow-clone-c0yx.onrender.com'}
 //Adding Authorization(for each req,check if the token is valid or not and then allow the specific actions(postQuestion,deleteAnswer.. etc))
 
 API.interceptors.request.use((req) => {
-  
+
   if (localStorage.getItem("Profile")) {
     req.headers.authorization = `Bearer ${
       JSON.parse(localStorage.getItem("Profile")).token
@@ -13,6 +13,7 @@ API.interceptors.request.use((req) => {
   }
   return req;                       //only then req will go the backend
 });
+
 export const logIn=(authData)=>API.post('/user/login',authData)           
 export const signUp=(authData)=>API.post('/user/signup',authData)
 export const getAllUsers=()=>API.get('/user/getAllUsers')
