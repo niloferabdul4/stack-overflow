@@ -24,7 +24,7 @@ const QuestionDetails = () => {
     const navigate=useNavigate()
     const location=useLocation()
     
-    const url="stackoverflow-clone-dun.vercel.app"
+    const url="https://stack-overflow-fullstack.netlify.app/"
 
     const [answer,setAnswer]=useState('')
     
