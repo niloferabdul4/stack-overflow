@@ -24,7 +24,7 @@ const QuestionDetails = () => {
     const navigate=useNavigate()
     const location=useLocation()
     
-    const url="https://stackoverflow-clone-c0yx.onrender.com"
+    const url="stackoverflow-clone-dun.vercel.app"
 
     const [answer,setAnswer]=useState('')
     
