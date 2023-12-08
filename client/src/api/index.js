@@ -1,6 +1,5 @@
 import axios from 'axios'
-const API=axios.create({baseURL:'https://stackoverflow-clone-c0yx.onrender.com'})                // create a base url and store in API
-                                                                        // post (url,data) to the API
+const API=axios.create({baseURL:'https://stackoverflow-clone-c0yx.onrender.com'})                // create a base url and store in API                                                                // post (url,data) to the API
 
 //Adding Authorization(for each req,check if the token is valid or not and then allow the specific actions(postQuestion,deleteAnswer.. etc))
 
@@ -13,6 +12,7 @@ API.interceptors.request.use((req) => {
   }
   return req;                       //only then req will go the backend
 });
+
 
 export const logIn=(authData)=>API.post('/user/login',authData)           
 export const signUp=(authData)=>API.post('/user/signup',authData)
