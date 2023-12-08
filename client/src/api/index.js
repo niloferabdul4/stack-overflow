@@ -25,7 +25,6 @@ export const getAllQuestions = () => API.get("/questions/get");
 export const deleteQuestion=(id)=>API.delete(`/questions/delete/${id}`)
 export const voteQuestion=(id,value)=>API.patch(`/questions/vote/${id}`,{value})
 
-
 /******  Answer Sections *******/
 
 export const postAnswer= (id, noOfAnswers, answerBody, userAnswered,userId) =>API.patch(`/answer/post/${id}`,{ noOfAnswers, answerBody, userAnswered,userId})

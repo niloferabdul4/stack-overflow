@@ -39,8 +39,9 @@ export const deleteQuestion=(id,navigate)=>async(dispatch)=>{
 }
 
 export const voteQuestion=(id,value)=>async(dispatch)=>{
-    try{
-    const {data}=api.voteQuestion(id,value)
+    try
+    {
+    const {data}= await api.voteQuestion(id,value)
     dispatch(fetchAllQuestions())
     }
     catch(error){
