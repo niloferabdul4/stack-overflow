@@ -1,5 +1,6 @@
 import axios from 'axios'
-const API=axios.create({baseURL:'https://stack-overflow-fullstack.netlify.app/'})                // create a base url and store in API                                                                // post (url,data) to the API
+const API=axios.create({baseURL:'https://stack-overflow-fullstack.netlify.app'})                // create a base url and store in API                                                                // post (url,data) to the API
+
 
 //Adding Authorization(for each req,check if the token is valid or not and then allow the specific actions(postQuestion,deleteAnswer.. etc))
 
@@ -19,12 +20,14 @@ export const signUp=(authData)=>API.post('/user/signup',authData)
 export const getAllUsers=()=>API.get('/user/getAllUsers')
 export const updateProfile=(id,updatedData)=>API.patch(`/user/update/${id}`,updatedData)
 
+
 /********     Questions   *************/
 
 export const postQuestion = (questionData) => API.post("/questions/Ask", questionData);
 export const getAllQuestions = () => API.get("/questions/get");
 export const deleteQuestion=(id)=>API.delete(`/questions/delete/${id}`)
 export const voteQuestion=(id,value)=>API.patch(`/questions/vote/${id}`,{value})
+
 
 /******  Answer Sections *******/
 

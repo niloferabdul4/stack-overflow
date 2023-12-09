@@ -24,7 +24,7 @@ const QuestionDetails = () => {
     const navigate=useNavigate()
     const location=useLocation()
     
-    const url="https://stack-overflow-fullstack.netlify.app/"
+    const url="https://stack-overflow-fullstack.netlify.app"
 
     const [answer,setAnswer]=useState('')
     
@@ -35,7 +35,6 @@ const QuestionDetails = () => {
        copy(url+location.pathname)
     
      }
-
 
      /********   Delete Function  ************/
 
