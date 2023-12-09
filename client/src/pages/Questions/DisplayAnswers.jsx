@@ -11,12 +11,14 @@ const DisplayAnswers = ({ question,handleShare }) => {
     const User=useSelector((state)=>state.currentUserReducer)
     const {id}=useParams()                                    //getting the id of the question from the url
     const dispatch=useDispatch()
+    
 
-    const handleDelete=(answerId,noOfAnswers)=>{
+    const handleDelete=(answerId,noOfAnswers)=>
+    {
         dispatch(deleteAnswer(id,answerId,noOfAnswers-1))    //dipatch an action with parameters(......)
                                                              // reduce the (no of ans) while deleting
-
     }
+
     return (
         <>
 
