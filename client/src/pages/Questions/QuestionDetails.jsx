@@ -23,7 +23,7 @@ const QuestionDetails = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const url = "https://stackoverflow-clone1-vioi.onrender.com"
+  const url = process.env.API_URL
 
   const [answer, setAnswer] = useState('')
 
