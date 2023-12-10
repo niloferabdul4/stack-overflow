@@ -23,7 +23,7 @@ const QuestionDetails = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const url = "https://stackoverflow-mern.netlify.app"
+  const url = "https://stack-overflow-flame.vercel.app"
 
   const [answer, setAnswer] = useState('')
 
