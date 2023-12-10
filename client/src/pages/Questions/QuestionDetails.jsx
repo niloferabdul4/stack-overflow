@@ -23,7 +23,7 @@ const QuestionDetails = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const url = "https://stack-overflow-flame.vercel.app"
+  const url = "https://stackoverflow-clone1-vioi.onrender.com"
 
   const [answer, setAnswer] = useState('')
 
