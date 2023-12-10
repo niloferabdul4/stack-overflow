@@ -23,7 +23,7 @@ const QuestionDetails = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const url = "https://stack-overflow-fullstack.netlify.app"
+  const url = "https://stack-overflow-lovat-iota.vercel.app"
 
   const [answer, setAnswer] = useState('')
 
