@@ -127,7 +127,7 @@ const handleAskQuestion=()=>{
 
       <div className='main-bar-main'>
         {questionsList.data === null ?
-          (<h1>Loading...</h1>)
+          (<h1 className='loading'>Loading...</h1>)
           :
           (
             <>

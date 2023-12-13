@@ -10,12 +10,10 @@ import downvote from "../../assets/sort-down.svg";
 import './Questions.css'
 import Avatar from '../../components/Avatar/Avatar';
 import DisplayAnswers from './DisplayAnswers';
-
 import { postAnswer, deleteQuestion, voteQuestion } from '../../actions/questions';
 
 
 const QuestionDetails = () => {
-
   const User = useSelector((state) => state.currentUserReducer)
   const { id } = useParams()
   const questionsList = useSelector((state) => state.questionsReducer)
@@ -179,10 +177,10 @@ const QuestionDetails = () => {
 
 
   return (
-
+    
     <div className="question-details-page">
       {questionsList.data === null ? (
-        <h1>Loading...</h1>
+        <h1 style={{fontWeight:'500'}}>Loading...</h1>
       ) : (
         <>
           {questionsList.data
@@ -191,7 +189,7 @@ const QuestionDetails = () => {
 
               <div key={question._id}>
                 <section className="question-details-container1">
-                  <h1 style={{ margin: '10px 0px' }}>{question.questionTitle}</h1>
+                  <h1 className='question-details-title'>{question.questionTitle}</h1>
                   <div className="question-details-container2">
                     <div className="question-votes">
                       <img
@@ -286,7 +284,7 @@ const QuestionDetails = () => {
                       value="Post Your Answer"
                     />
                   </form>
-                  <p>
+                  <p className='extra-text'>
                     Browse other Question tagged
                     {question.questionTags.map((tag) => (
                       <Link to="/Tags" key={tag} className="ans-tags">

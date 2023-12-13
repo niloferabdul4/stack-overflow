@@ -1,16 +1,20 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import { jwtDecode } from 'jwt-decode'
+
 import './Navbar.css'
 import Avatar from '../Avatar/Avatar';
 import { setCurrentUser } from '../../actions/currentUser.js'
 import { nav_links } from '../../constants/data'
 import logo from '../../assets/logo.png'
+import icon from '../../assets/icon.png'
 
+const Navbar = ({isSidebarOpen,setIsSidebarOpen}) => {
 
-const Navbar = () => {
 
   const User = useSelector((state) => (state.currentUserReducer))
   const dispatch = useDispatch()
@@ -19,7 +23,7 @@ const Navbar = () => {
   useEffect(() => {
 
     const token = User?.token;   // if the token is present  
-   // console.log(token)
+    // console.log(token)
     if (token) {
       const decodedToken = jwtDecode(token)
       if (decodedToken.exp * 1000 < new Date().getTime())            // if the expiry time is less than current time
@@ -44,9 +48,19 @@ const Navbar = () => {
   return (
     <nav>
       <div className="navbar">
+        <div className="menu_icon"  >
+          {isSidebarOpen? <CloseIcon onClick={() => {setIsSidebarOpen(false) }} />
+          :
+          <MenuIcon onClick={() => {setIsSidebarOpen(true)}} />
+          }
+         
+        </div>
+
         <Link to='/' className='nav_item nav_logo'>
           <img src={logo} className='logo' alt='logo' />
+          <img src={icon} alt='stack_overflow' className='mobile_logo' />
         </Link>
+
         {nav_links.map(item => {
           return <>
             <Link key={item.id} to={item.path} className='nav_item nav_btn'>
@@ -54,6 +68,7 @@ const Navbar = () => {
             </Link>
           </>
         })}
+
 
         <form className='search'>
           <SearchIcon color='grey' fontSize='small' />

@@ -4,8 +4,6 @@ import LeftSidebar from "../../components/LeftSidebar/LeftSidebar";
 import "./Tags.css";
 import TagsList from "./TagsList";
 
-
-
 const Tags = () => {
     return (
         <div className="home_container_1">

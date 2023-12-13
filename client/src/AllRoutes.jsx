@@ -9,17 +9,17 @@ import Tags from './pages/Tags/Tags'
 import Users from './pages/Users/Users'
 import UserProfile from './pages/UserProfile/UserProfile'
 
-const AllRoutes = () => {
+const AllRoutes = ({isSidebarOpen}) => {
   return (
    <Routes>
-         <Route path='/' element={<Home/>} />
-         <Route path='/Questions' element={<Questions/>} />
+         <Route path='/' element={<Home />} />
+         <Route path='/Questions' element={<Questions />} />
          <Route path='/Questions/:id' element={<DisplayQuestion/>} />
          <Route path='/AskQuestion' element={<AskQuestion/>} />
          <Route path='/Auth' element={<Auth/>}  /> 
-         <Route path='/Tags' element={<Tags/>}  /> 
+         <Route path='/Tags' element={<Tags />}  /> 
          <Route path='/Users' element={<Users/>}  /> 
-         <Route path='/Users/:id' element={<UserProfile/>} />
+         <Route path='/Users/:id' element={<UserProfile />} />
    </Routes>
   )
 }

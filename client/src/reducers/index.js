@@ -8,5 +8,7 @@ export default combineReducers({
     authReducer,
     currentUserReducer,
     questionsReducer,
-    usersReducer
+    usersReducer,
+
+  
 })
