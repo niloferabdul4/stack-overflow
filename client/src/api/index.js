@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 const API=axios.create({baseURL:'https://stackoverflow-clone1-vioi.onrender.com'})                // create a base url and store in API                                                                // post (url,data) to the API
 
 //Adding Authorization(for each req,check if the token is valid or not and then allow the specific actions(postQuestion,deleteAnswer.. etc))
@@ -33,3 +34,8 @@ export const voteQuestion=(id,value)=>API.patch(`/questions/vote/${id}`,{value})
 export const postAnswer= (id, noOfAnswers, answerBody, userAnswered,userId) =>API.patch(`/answer/post/${id}`,{ noOfAnswers, answerBody, userAnswered,userId})
 export const deleteAnswer = (id, answerId, noOfAnswers) =>
   API.patch(`/answer/delete/${id}`, { answerId, noOfAnswers });    //adding {answrId,noOfAnswers} as body to url
+
+
+/**********  ChatBot ***********/
+
+export const sendMessage=(chatInput)=>API.post('/chat/send',{chatInput})

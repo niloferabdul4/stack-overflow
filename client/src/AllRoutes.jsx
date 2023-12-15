@@ -9,7 +9,7 @@ import Tags from './pages/Tags/Tags'
 import Users from './pages/Users/Users'
 import UserProfile from './pages/UserProfile/UserProfile'
 
-const AllRoutes = ({isSidebarOpen}) => {
+const AllRoutes = () => {
   return (
    <Routes>
          <Route path='/' element={<Home />} />

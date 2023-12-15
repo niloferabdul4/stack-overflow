@@ -1,6 +1,7 @@
 import React from 'react'
 import LeftSidebar from '../../components/LeftSidebar/LeftSidebar'
 import UsersList from './UsersList'
+import ChatBot from '../../components/ChatBot/ChatBot'
 
 const Users = () => {
 
@@ -14,6 +15,7 @@ const Users = () => {
           <UsersList />        
       </div>
       </div>
+      <ChatBot/>
     </div>
 
   )

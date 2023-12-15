@@ -10,6 +10,7 @@ import Avatar from '../../components/Avatar/Avatar'
 import EditProfileForm from './EditProfileForm'
 import ProfileBio from './ProfileBio'
 import './UserProfile.css'
+import ChatBot from '../../components/ChatBot/ChatBot';
 
 
 const UserProfile = () => {
@@ -63,6 +64,7 @@ const UserProfile = () => {
           </>
         </section>
       </div>
+      <ChatBot/>
     </div>
   )
 }

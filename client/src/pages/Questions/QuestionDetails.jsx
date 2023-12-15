@@ -11,6 +11,8 @@ import './Questions.css'
 import Avatar from '../../components/Avatar/Avatar';
 import DisplayAnswers from './DisplayAnswers';
 import { postAnswer, deleteQuestion, voteQuestion } from '../../actions/questions';
+import ChatBot from '../../components/ChatBot/ChatBot';
+
 
 
 const QuestionDetails = () => {
@@ -301,11 +303,14 @@ const QuestionDetails = () => {
                       ask your own question.
                     </Link>
                   </p>
+                 
                 </section>
+              
               </div>
             ))}
         </>
       )}
+     <ChatBot/>
     </div>
   )
 }

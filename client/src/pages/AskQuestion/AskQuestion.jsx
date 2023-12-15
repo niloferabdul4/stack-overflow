@@ -3,6 +3,7 @@ import './AskQuestion.css'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector} from 'react-redux';
 import { askQuestion } from '../../actions/questions';
+import ChatBot from '../../components/ChatBot/ChatBot';
 
 const AskQuestion = () => {
    
@@ -97,6 +98,7 @@ const AskQuestion = () => {
             />
           </form>
         </div>
+        <ChatBot/>
       </div>
     )
 }

@@ -3,6 +3,7 @@ import { tags_list } from "./tags_list";
 import LeftSidebar from "../../components/LeftSidebar/LeftSidebar";
 import "./Tags.css";
 import TagsList from "./TagsList";
+import ChatBot from "../../components/ChatBot/ChatBot";
 
 const Tags = () => {
     return (
@@ -26,6 +27,7 @@ const Tags = () => {
                     </div>
                 </div>
             </div>
+            <ChatBot/>
         </div>
     );
 };
