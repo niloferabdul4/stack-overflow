@@ -1,15 +1,21 @@
 // reducers/modalReducer.js
 
-const chatReducer=(state={chatResponse:''},action)=>{
-switch (action.type) {
-    case 'POST_MESSAGE':
-       
-        return action.payload
-      
+const initialState = {
+    chats: []
 
-    default:
-       return state;
 }
+const chatReducer = (state = initialState, action) => {
+    switch (action.type) {
+        
+        case 'FETCH_ALL_MESSAGES':
+            return {
+                ...state,
+                chats: action.payload
+            };
+          
+        default:
+            return state;
+    }
 }
 
 export default chatReducer;

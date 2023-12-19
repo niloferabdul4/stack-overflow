@@ -25,7 +25,7 @@
 .chatbot-img{
     width:80px;
     height:100px;
-    bottom:20px;
+    bottom:6px;
     right:0;
     position:fixed;
 }
@@ -33,7 +33,7 @@
 
 .chatbox{
     position: absolute;
-    top: 50%;                          /* position the top  edge of the element at the middle of the parent */
+    top: 40%;                          /* position the top  edge of the element at the middle of the parent */
     left: 50%;                         /* position the left edge of the element at the middle of the parent */
     transform: translate(-50%, -50%); /* This is a shorthand of translateX(-50%) and translateY(-50%) */
     z-index: 500;
@@ -47,6 +47,10 @@
     background-color: white;
     display: flex;
     flex-direction: column;
+    box-shadow: 0px 4px #ef8236;
+    overflow-x: hidden;
+    overflow-y: auto;
+
 }
 
 
@@ -71,26 +75,35 @@
 
 .chatbox-messages{
     flex-grow:1;
+    padding: 15px 8px;
+    overflow-y: scroll;
 }
 .message{
-   
+    margin:15px 10px;
     padding: 6px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    font-size: 13px;
+  
 
 }
-.chat-message-avatar{
-    width:50px;
-    height: 50px;
+.chat-message-image{
+    width:40px;
+    height: 40px;
 }
-.golden{
+.user-message{
     background-color: #fdf7e2;
+    border-radius: 18px 18px 0px 18px;
+    align-items: flex-end;
+    margin-left:60px;
    
 }
-.purple{
+.bot-message{
+    
     background-color:rgb(237, 235, 245);
-  
+    border-radius: 0px 18px 18px 18px;
+  align-items: flex-start;
+  margin-right: 40px;
 }
 
 .chatbox-footer{
@@ -109,5 +122,6 @@
 
 .chat-send-btn{
 border:none;
+outline: none;
 background:transparent;
 }
