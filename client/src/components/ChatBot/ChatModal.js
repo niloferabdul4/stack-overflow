@@ -46,7 +46,7 @@ useEffect(()=>{dispatch(fetchAllMessages())
   const handleEnter=(e)=>{
     if(e.key==='Enter'){
       dispatch(sendMessageToChatbot({role:'user',prompt:prompt,userId:User?.result?._id}))
-      console.log(chats)
+      setPrompt('')
     }
   }
 
