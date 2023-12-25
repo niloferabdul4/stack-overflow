@@ -10,7 +10,8 @@ import Avatar from '../../components/Avatar/Avatar'
 import EditProfileForm from './EditProfileForm'
 import ProfileBio from './ProfileBio'
 import './UserProfile.css'
-import ChatBot from '../../components/ChatBot/ChatBot';
+import ChatBotTab from '../../components/ChatBotTab/ChatBotTab';
+import Badges from '../../components/Rewards/Badges/Badges';
 
 
 const UserProfile = () => {
@@ -52,6 +53,7 @@ const UserProfile = () => {
             )
             }
           </div>
+         
           <>
             {toggle ? (
               <EditProfileForm
@@ -62,9 +64,11 @@ const UserProfile = () => {
               <ProfileBio selectedProfile={selectedProfile} />
             )}
           </>
+          
+          <Badges/>
         </section>
       </div>
-      <ChatBot/>
+   <ChatBotTab/>
     </div>
   )
 }

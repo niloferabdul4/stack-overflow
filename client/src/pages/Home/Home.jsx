@@ -2,7 +2,7 @@ import React from 'react'
 import LeftSidebar from '../../components/LeftSidebar/LeftSidebar'
 import HomeMainbar from '../../components/HomeMainbar/HomeMainbar'
 import RightSidebar from '../../components/RightSidebar/RightSidebar'
-import ChatBot from '../../components/ChatBot/ChatBot'
+import ChatBotTab from '../../components/ChatBotTab/ChatBotTab'
 
 
 const Home = () => {
@@ -13,7 +13,7 @@ const Home = () => {
           <LeftSidebar/>
           <div className="home_container_2">
                <HomeMainbar/>
-               <ChatBot/>
+              <ChatBotTab/>
                <RightSidebar/>
           </div>
       </div>

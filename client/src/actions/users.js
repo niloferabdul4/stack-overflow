@@ -1,5 +1,6 @@
 import * as api from "../api";
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export const fetchAllUsers=()=>async(dispatch)=>{
     try{
         const {data}=await api.getAllUsers()             // data received from backend
@@ -7,7 +8,7 @@ export const fetchAllUsers=()=>async(dispatch)=>{
       
     }
     catch (error) {
-        console.log(error);
+        toast.error(error.response.data.message);
     }
 }
 
@@ -17,6 +18,6 @@ export const updateProfile=(id,updatedData)=>async(dispatch)=>{
         dispatch({type:'UPDATE_CURRENT_USER',payload:data})
     }
     catch(error){
-        console.log(error)
+        toast.error(error.response.data.message);
     }
 }

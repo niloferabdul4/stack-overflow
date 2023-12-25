@@ -1,0 +1,32 @@
+.chat{
+    height:50px;
+    width:300px;
+    background-color:rgb(166, 157, 225);
+    color:white;
+    display: flex;
+    bottom:5px;
+    right:0;
+    position:fixed;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition:all 0.3s ease;
+    border: none;
+}
+
+.chat:hover{
+    background-color: rgb(144, 130, 231);
+}
+
+.chatbot-img{
+    width:80px;
+    height:100px;
+    bottom:6px;
+    right:0;
+    position:fixed;
+}
+

@@ -40,3 +40,5 @@ export const deleteAnswer = (id, answerId, noOfAnswers) =>
 
 export const sendChatbot = (textData) => API.post("/chatbot/send",textData);
 export const getAllMessages = (userId) => API.get(`/chatbot/get/${userId}`);
+export const generateOTP=(email)=>API.post('/chatbot/sendOTP',{email})
+export const verifyOTP=(OTPInput,email)=>API.post('/chatbot/verifyOTP',{OTPInput,email})

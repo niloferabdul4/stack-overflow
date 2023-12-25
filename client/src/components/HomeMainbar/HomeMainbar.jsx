@@ -1,4 +1,7 @@
 import React from 'react'
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import './HomeMainbar.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import QuestionList from './QuestionList'
@@ -105,7 +108,7 @@ const HomeMainbar = () => {
 const handleAskQuestion=()=>{
   if(user===null)
   {
-    alert('please Login or Sign Up')
+    toast.info('please Login or Sign Up')
     navigate('/Auth')
   }
   else

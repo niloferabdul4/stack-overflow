@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import icon from '../../assets/icon.png'
 import AboutAuth from './AboutAuth'
 import './Auth.css'
@@ -27,12 +30,12 @@ const Auth = () => {
         e.preventDefault();
         //console.log({name,email,password})
         if (!email || !password) {
-            alert('Plz fill all the fields')
+            toast.error('Plz fill all the fields')
         }
         if (isSignUp) {
             if (!name)
             {
-                alert('Enter a name to continue')
+                toast.error('Enter a name to continue')
             }
             dispatch(signup({ name, email, password }, navigate))
         

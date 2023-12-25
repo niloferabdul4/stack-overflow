@@ -1,5 +1,7 @@
 import * as api from "../api";
 import { setCurrentUser } from "./currentUser";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const signup = (authData, navigate) => async(dispatch) => {
     try {
@@ -9,7 +11,7 @@ export const signup = (authData, navigate) => async(dispatch) => {
         navigate('/')
     }
     catch (error) {
-        console.log(error);
+        toast.error(error.response.data.message);
     }
 }
 export const login = (authData, navigate) => async (dispatch) => {
@@ -20,6 +22,6 @@ export const login = (authData, navigate) => async (dispatch) => {
         navigate('/')
     }
     catch (error) {
-        console.log(error);
+        toast.error(error.response.data.message);
     }
 }

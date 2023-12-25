@@ -1,7 +1,7 @@
 import React from 'react'
 import LeftSidebar from '../../components/LeftSidebar/LeftSidebar'
 import UsersList from './UsersList'
-import ChatBot from '../../components/ChatBot/ChatBot'
+import ChatBotTab from '../../components/ChatBotTab/ChatBotTab'
 
 const Users = () => {
 
@@ -15,7 +15,7 @@ const Users = () => {
           <UsersList />        
       </div>
       </div>
-      <ChatBot/>
+   <ChatBotTab/>
     </div>
 
   )

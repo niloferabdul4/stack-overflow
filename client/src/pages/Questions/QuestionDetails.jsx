@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment'
 import copy from 'copy-to-clipboard'
+import {toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 import upvote from "../../assets/sort-up.svg";
 import downvote from "../../assets/sort-down.svg";
@@ -11,7 +13,7 @@ import './Questions.css'
 import Avatar from '../../components/Avatar/Avatar';
 import DisplayAnswers from './DisplayAnswers';
 import { postAnswer, deleteQuestion, voteQuestion } from '../../actions/questions';
-import ChatBot from '../../components/ChatBot/ChatBot';
+import ChatBotTab from '../../components/ChatBotTab/ChatBotTab';
 
 
 
@@ -48,12 +50,12 @@ const QuestionDetails = () => {
   const handlePostAns = (event, answerLength) => {
     event.preventDefault()
     if (User === null) {
-      alert('Login or SignUp to answer a question')
+      toast.info('Login or SignUp to answer a question')
       navigate('/Auth')
     }
     else {
       if (answer === '') {
-        alert("Enter an answer before submitting");
+        toast.info("Enter an answer before submitting");
       }
       else {
         dispatch(postAnswer({ id, answerBody: answer, noOfAnswers: answerLength + 1, userAnswered: User?.result.name, userId: User?.result._id }))
@@ -65,7 +67,7 @@ const QuestionDetails = () => {
 
   const handleUpVote = () => {
     if (User === null) {
-      alert("Login or Signup to up vote a question");
+      toast.info("Login or Signup to up vote a question");
       navigate("/Auth");
     } else {
       dispatch(voteQuestion(id, "upVote"));
@@ -76,7 +78,7 @@ const QuestionDetails = () => {
   const handleDownVote = () => {
 
     if (User === null) {
-      alert("Login or Signup to down vote a question");
+      toast.info("Login or Signup to down vote a question");
       navigate("/Auth");
     } else {
       dispatch(voteQuestion(id, "downVote"));
@@ -310,7 +312,7 @@ const QuestionDetails = () => {
             ))}
         </>
       )}
-     <ChatBot/>
+     <ChatBotTab/>
     </div>
   )
 }

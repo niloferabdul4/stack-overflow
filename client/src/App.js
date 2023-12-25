@@ -8,7 +8,7 @@ import { fetchAllQuestions } from './actions/questions.js';
 import { setCurrentUser } from './actions/currentUser.js';
 import { fetchAllUsers } from './actions/users.js';
 import ToggleSidebar from './components/ToggleSidebar/ToggleSidebar.js';
-
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
@@ -30,6 +30,7 @@ function App() {
     <div className="App">
       {isSidebarOpen && <ToggleSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />}
       <Navbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+      <ToastContainer/>
       <AllRoutes />
 
     </div>
